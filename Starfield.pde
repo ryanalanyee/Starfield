@@ -7,9 +7,9 @@ class Particle {
   Particle() {
     x = random(width);
     y = random(height);
-    col = color(random(255), random(255), random(255));
+    col = color(random(255), random(255), random(1255));
     angle = random(TWO_PI);
-    speed = random(2);
+    speed = random(.1);
   }
 
   void move() {
@@ -32,8 +32,8 @@ class OddballParticle extends Particle {
 
   void move() {
     // Implement the unique move behavior for OddballParticle
-    x += (angle) * (speed * 2);
-    y += (angle) * (speed * 2);
+    x += (angle) * (speed * 1);
+    y += (angle) * (speed * 1);
   }
 }
 
@@ -41,7 +41,7 @@ Particle[] particles;
 
 void setup() {
   size(500, 500);
-  particles = new Particle[10];
+  particles = new Particle[1000];
   for (int i = 0; i < particles.length; i++) {
     if (i == 0) {
       particles[i] = new OddballParticle();
