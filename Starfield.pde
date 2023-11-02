@@ -1,68 +1,73 @@
-class Particle {
-  double x, y; // X and Y positions
-  color col;  // Color
-  double angle;  // Angle
-  double speed;  // Speed
-
-  Particle() {
-    x = random(width);
-    y = random(height);
-    col = color(random(255), random(255), random(1255));
-    angle = random(TWO_PI);
-    speed = random(.1);
-  }
-
-  void move() {
-    x += (angle) * speed;
-    y += (angle) * speed;
-  }
-
-  void show() {
-    noStroke();
-    fill(col);
-    ellipse((float)x, (float)y, 25, 25);
-  }
+Firework f = new Firework();
+Firework[] AmountOfSparks = new Firework[300];
+void setup(){
+size(700,700);
+noStroke();
+for(int i = 10; i < AmountOfSparks.length; i++){
+AmountOfSparks[i] = new Firework();
 }
-
-class OddballParticle extends Particle {
-  OddballParticle() {
-    super();  // Call the constructor of the parent class
-    // You can add specific characteristics for OddballParticle here
-  }
-
-  void move() {
-    // Implement the unique move behavior for OddballParticle
-    x += (angle) * (speed * 1);
-    y += (angle) * (speed * 1);
-  }
+for(int i = 0; i < 10; i++){
+AmountOfSparks[i] = new Firework2();
 }
-
-Particle[] particles;
-
-void setup() {
-  size(500, 500);
-  particles = new Particle[1000];
-  for (int i = 0; i < particles.length; i++) {
-    if (i == 0) {
-      particles[i] = new OddballParticle();
-    } else {
-      particles[i] = new Particle();
-    }
-  }
 }
+void draw(){
+background(0,0,0);
+fill(49,99,0);
 
-void draw() {
-  background(220);
-  for (Particle p : particles) {
-    p.move();
-    p.show();
-  }
+f.show();
+f.explosion();
+for(int i = 0; i < AmountOfSparks.length; i++){
+AmountOfSparks[i].show();
+AmountOfSparks[i].explosion();}
 }
 
 
-class OddballParticle //inherits from Particle
+
+class Firework{
+double myX,myY, mySpeed, mySize,myColor1,myColor2,myColor3, myOpacity;
+double myAngle;
+
+Firework(){
+myX = 350;
+myY = 350;
+mySize = (int)(Math.random()*40) + 20;
+mySpeed = (Math.random()*2) + 1;
+myColor1 = (int)(Math.random()*200 + 100);
+myColor2 = (int)(Math.random()*200 + 100);
+myColor3 = (int)(Math.random()*200 + 100);
+myOpacity = (int)(Math.random()*50)+100;
+ myAngle=(Math.random()*2)*Math.PI;
+}
+void show(){
+fill((int)myColor1,(int)myColor2,(int)myColor3, (float)myOpacity);
+ellipse((float)myX,(float)myY, (float)mySize, (float)mySize);
+}
+
+//void drift(){
+//myX = myX + mySpeed;
+//if(myX > 950)
+//myX = -150;
+//}
+void explosion()
 {
-	//your code here
+  myX=myX+Math.cos(myAngle)*mySpeed;
+    myY=myY+Math.sin(myAngle)*mySpeed;
 }
+void mousePressed()
+   {
+   redraw();
+   }
+}
+class Firework2 extends Firework{
+Firework2(){
+myX = 350;
+myY = 350;
+myColor1 = (int)(Math.random()*50) + 200;
+myColor2 = (int)(Math.random()*50) + 200;
+myColor3 = (int)(Math.random()*50) + 200;
+mySpeed = 0.5;
+myOpacity = (int)(Math.random()*60) + 160;
 
-
+mySize = (int)(Math.random()*40) + 120;
+}
+}
