@@ -32,4 +32,72 @@ class Square {
     myX = 350;
     myY = 350;
     mySize = (int)(Math.random() * 40) + 20;
-    my
+    mySpeed = (Math.random() * 2) + 1;
+    myColor1 = (int)(Math.random() * 100);
+    myColor2 = (int)(Math.random() * 100);
+    myColor3 = (int)(Math.random() * 255);
+    myOpacity = (int)(Math.random() * 50) + 100;
+    myAngle = (Math.random() * 2) * Math.PI;
+  }
+
+  void show() {
+    fill((int)myColor1, (int)myColor2, (int)myColor3, (float)myOpacity);
+    rect((float)myX, (float)myY, (float)mySize, (float)mySize);
+  }
+
+  void explosion() {
+    myX = myX + Math.cos(myAngle) * mySpeed;
+    myY = myY + Math.sin(myAngle) * mySpeed;
+  }
+
+  void mousePressed() {
+    redraw();
+  }
+}
+
+class Square2 extends Square {
+  Square2() {
+    myX = 350;
+    myY = 350;
+    myColor1 = (int)(Math.random() * 255);
+    myColor2 = (int)(Math.random() * 255);
+    myColor3 = (int)(Math.random() * 255);
+    mySpeed = 0.5;
+    myOpacity = (int)(Math.random() * 60) + 160;
+
+    mySize = (int)(Math.random() * 40) + 20;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
